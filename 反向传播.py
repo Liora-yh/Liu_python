@@ -27,7 +27,7 @@ for epoch in range(100):
         l = loss(x, y)          # l是一个张量，tensor主要是在建立计算图 forward, compute the loss
         l.backward()            # backward,compute grad for Tensor whose requires_grad set to True
         print('\tgrad:', x, y, w.grad.item())
-        
+
         w.data = w.data - 0.01 * w.grad.data        # 权重更新时，注意grad也是一个tensor
         # w是带梯度跟踪(requires_grad=True)的张量。如果直接w = ...，会生成新张量，破坏计算图。
         # .data：访问张量里面原始数据，脱离梯度计算图，只修改数值，不记录运算。
@@ -50,7 +50,7 @@ forward(4) 和 forward(4).item() 区别（PyTorch）
     类型：torch.Tensor，不能直接拿来做普通 python 数学运算、存入列表、写文件。
 
 2. forward(4).item()
-    .item()：把只有单个元素的 Tensor，提取出来变成 Python 原生浮点数 float。
+    .item()：把只有单个元素的 Tensor，提取出来变成 Python 原生浮点数 float，即item()是把 tensor 转成标量
     打印输出示例：
         predict (after training) 4 7.999777758621207
     输出干干净净，只有纯数字，没有tensor()、没有grad_fn。
