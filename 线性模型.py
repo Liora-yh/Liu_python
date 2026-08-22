@@ -17,6 +17,8 @@ def forward(x):
 # forward：前向计算，模型预测函数。
 # 输入 x，输出预测值 y(尖) = w * x
 # 注意：w 是全局变量，函数内部直接使用外部循环的 w。
+# 函数 forward(x) 在函数内部写了 return x * w
+# 它自己内部没有 w，就向外层作用域找 w，找到了 for 循环正在跑的那个 w。
 
 def loss(x, y):
     y_pred = forward(x)
@@ -32,6 +34,8 @@ mse_list = []   # mse_list：保存每个 w 对应的均方误差 MSE
 
 # np.arange(0.0,4.1,0.1)：生成数组：0.0, 0.1, 0.2 ..., 4.0
 # 为什么写 4.1：arange 左闭右开，终止写 4.1 才会包含 4.0。
+# for w in np.arange(...) 执行的时候，Python 自动创建变量 w。
+# 每一次循环迭代，w 就被更新为新的值。
 for w in np.arange(0.0, 4.1, 0.1):
     print("w=", w)
     l_sum = 0
@@ -58,7 +62,8 @@ for w in np.arange(0.0, 4.1, 0.1):
     # 均方误差：所有样本损失求平均。
 
 plt.plot(w_list, mse_list)
-plt.ylabel('Loss')      # 设置y轴的文字标签：纵坐标含义是损失Loss
+plt.ylabel('Loss')      # 设置y轴
+# 的文字标签：纵坐标含义是损失Loss
 plt.xlabel('w')         # 设置x轴的文字标签：横坐标含义是权重w
 plt.show()
 # plt.plot(X, Y)作用：画折线图，把一组 X 坐标、一组 Y 坐标的点依次连起来
