@@ -31,8 +31,9 @@ model = LinearModel()
 
 # construct loss and optimizer
 # criterion = torch.nn.MSELoss(size_average = False)
-criterion = torch.nn.MSELoss(reduction='sum')
-optimizer = torch.optim.SGD(model.parameters(), lr=0.01)    # model.parameters()自动完成参数的初始化操作，这个地方我可能理解错了
+criterion = torch.nn.MSELoss(reduction='sum')  # size_average = False is deprecated, use reduction='sum' instead
+# model.parameters()会扫描module中的所有成员，如果成员中有相应权重，那么都会将结果加到要训练的参数集合上
+optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
 
 # training cycle forward, backward, update
 for epoch in range(100):
