@@ -50,15 +50,26 @@ criterion = torch.nn.BCELoss(reduction='mean')
 optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
 
 # training cycle forward, backward, update
-if __name__ == '__main__':
-    for epoch in range(100):
-        for i, data in enumerate(train_loader, 0):  # train_loader 是先shuffle后mini_batch
-            inputs, labels = data
-            y_pred = model(inputs)
-            loss = criterion(y_pred, labels)
-            print(epoch, i, loss.item())
+# if __name__ == '__main__':
+#     for epoch in range(100):
+#         for i, data in enumerate(train_loader, 0):  # train_loader 是先shuffle后mini_batch
+#             inputs, labels = data
+#             y_pred = model(inputs)
+#             loss = criterion(y_pred, labels)
+#             print(epoch, i, loss.item())
+#
+#             optimizer.zero_grad()
+#             loss.backward()
+#
+#             optimizer.step()
+for epoch in range(100):
+    for i, data in enumerate(train_loader, 0):  # train_loader 是先shuffle后mini_batch
+        inputs, labels = data
+        y_pred = model(inputs)
+        loss = criterion(y_pred, labels)
+        print(epoch, i, loss.item())
 
-            optimizer.zero_grad()
-            loss.backward()
+        optimizer.zero_grad()
+        loss.backward()
 
-            optimizer.step()
+        optimizer.step()
