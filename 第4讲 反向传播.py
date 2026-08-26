@@ -49,7 +49,7 @@ forward(4) 和 forward(4).item() 区别（PyTorch）
     会显示 tensor(xxx)，还附带 grad_fn（自动求导的梯度函数标记），代表这个数还在计算图里面，支持反向传播求梯度。
     类型：torch.Tensor，不能直接拿来做普通 python 数学运算、存入列表、写文件。
 
-2. forward(4).item()
+2. forward(4).item()【第6讲也会讲到】
     .item()：把只有单个元素的 Tensor，提取出来变成 Python 原生浮点数 float，即item()是把 tensor 转成标量
     打印输出示例：
         predict (after training) 4 7.999777758621207
