@@ -35,6 +35,8 @@ class LogisticRegressionModel(torch.nn.Module):
 
     def forward(self, x):
         # y_pred = F.sigmoid(self.linear(x))
+        # nn.Sigmoid()：是类（Module，网络层）
+        # F.sigmoid()：是普通函数（⚠️ 新版 PyTorch 已经废弃，推荐改用torch.sigmoid()）
         y_pred = torch.sigmoid(self.linear(x))
         return y_pred
 """
